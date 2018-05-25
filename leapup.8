@@ -1,0 +1,30 @@
+.\" Manpage for leapup
+.\" Contact Mathias.Homann@openSUSE:org to correct errors or typos.
+.TH leapup 8 "25 May 2018" "1.0" "leapup man page"
+.SH NAME
+leapup \- prepare openSUSE Leap for up/downgrade to a different version
+.SH SYNOPSIS
+leapup -f <from> -t <to> -h
+.SH DESCRIPTION
+leapup prepares your installed openSUSE Leap system for an online up-/downgrade to a different version.
+.SH OPTIONS
+leapup takes up to two arguments, -f <from> and -t <to>, specifiying from which to which version you will upgrade. The from version will be taken from the installed system if omitted, the to version will also be taken from the installed version if omitted. Therefor calling the script with no arguments will at least not break things.
+
+leapup tells you step by step what it does, and what you have to do.
+
+In theory downgrades should work too, but that way has not been tested.
+
+.SH EXAMPLES
+leapup -f 42.3 -t 15.0 will prepare a Leap 42.3 system for upgrading to Leap 15.0
+
+leapup -t 15.0 prepares to switch to Leap 15.0, without specifying what version is installed
+
+leapup -f 15.0 -t 42.3 in case you want to go back from 15.0 to 42.3
+
+.SH SEE ALSO
+zypper(8) 
+.SH BUGS
+No known bugs.
+.SH AUTHOR
+Mathias Homann <Mathias.Homann@openSUSE.org>
+
