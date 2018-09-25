@@ -62,7 +62,7 @@ EOF
     esac
 done
 
-[ -z "${OLD}" ] && old=${VERSION}
+[ -z "${old}" ] && old=${VERSION}
 repodir=/etc/zypp/repos.d
 oldrepodir=/etc/zypp/repos.d_${old}
 newrepodir=/etc/zypp/repos.d_${new}
