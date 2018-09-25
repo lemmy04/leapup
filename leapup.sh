@@ -17,14 +17,6 @@
 
 . /etc/os-release
 
-old=${VERSION}
-new=42.3
-
-repodir=/etc/zypp/repos.d
-newrepodir=/etc/zypp/repos.d_${new}
-
-
-
 while getopts ":ht:f:" opt; do
     case $opt in
         h)
@@ -70,6 +62,12 @@ EOF
     esac
 done
 
+[ -z "${OLD} ] && old=${VERSION}
+repodir=/etc/zypp/repos.d
+oldrepodir=/etc/zypp/repos.d_${old}
+newrepodir=/etc/zypp/repos.d_${new}
+
+
 echo "Preparing your upgrade from ${NAME} ${old} to ${NAME} ${new}. Please lean back and relax."
 
 #
@@ -77,7 +75,7 @@ echo "Preparing your upgrade from ${NAME} ${old} to ${NAME} ${new}. Please lean 
 #
 
 [ -d ${repodir}_${old} ] && {
-    echo "backup of repositories already exists in ${repodir}_${old}" >&2
+    echo "backup of repositories already exists in ${oldrepodir}" >&2
     exit 1
 }
 [ -d ${newrepodir} ] && {
@@ -103,7 +101,7 @@ echo "Repositories for a seamless upgrade from ${NAME} ${old} to ${NAME} ${new} 
 # Step 2: renaming old repository directory, linking to the new one
 #
     
-mv ${repodir} ${repodir}_${old}
+mv ${repodir} ${oldrepodir}
 ln -s ${newrepodir} ${repodir}
 
 #
