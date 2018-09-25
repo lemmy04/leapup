@@ -62,7 +62,7 @@ EOF
     esac
 done
 
-[ -z "${OLD} ] && old=${VERSION}
+[ -z "${OLD}" ] && old=${VERSION}
 repodir=/etc/zypp/repos.d
 oldrepodir=/etc/zypp/repos.d_${old}
 newrepodir=/etc/zypp/repos.d_${new}
@@ -115,7 +115,7 @@ zypper cc --all
 #
 zypper ref || {
 	echo "Something has gone horribly wrong."
-	echo "Rolling back the repository changes (but keeping a backup of the new structure in ${newrepodir}"
+	echo "Rolling back the repository changes (but keeping a backup of the new structure in ${newrepodir})"
     
 	rm ${repodir}
 	mv ${repodir}_${old} ${repodir}
